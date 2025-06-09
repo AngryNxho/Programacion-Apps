@@ -4,7 +4,9 @@ import { Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss']
+  styleUrls: ['./login.page.scss'],
+  standalone: false,
+  
 })
 export class LoginPage {
   usuario: string = '';
