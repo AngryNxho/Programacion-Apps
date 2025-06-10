@@ -23,6 +23,10 @@
       <div class="buttons">
         <ion-button expand="block" (click)="agregarAFavoritos()">Agregar a Favoritos</ion-button>
       </div>
+
+      <div *ngIf="mensajeAgregado" class="mensaje-agregado animate">
+        🎬 ¡Película agregada a favoritos!
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

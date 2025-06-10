@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: false,
-  
 })
 export class LoginPage {
   usuario: string = '';
   password: string = '';
 
-  constructor(private alertController: AlertController, private navCtrl: NavController) {}
+  constructor(private alertController: AlertController, private router: Router) {}
 
   async login() {
     const usuarioRegex = /^[a-zA-Z0-9]{3,8}$/;
@@ -26,8 +26,13 @@ export class LoginPage {
       return;
     }
 
-    localStorage.setItem('usuario', this.usuario);
-    this.navCtrl.navigateForward('/home');
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario
+      }
+    };
+
+    this.router.navigate(['/home'], navigationExtras);
   }
 
   async showAlert(header: string, message: string) {

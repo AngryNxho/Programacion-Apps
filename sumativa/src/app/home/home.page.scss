@@ -10,7 +10,7 @@
 }
 
 ion-content.main-container {
-  --background: #1f2a47; 
+  --background: #1f2a47;
 }
 
 ion-toolbar {
@@ -24,7 +24,6 @@ ion-toolbar {
   margin-bottom: 20px;
 }
 
-/* Animación pulse */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -49,7 +48,7 @@ ion-toolbar {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease-in-out; /* para que también tenga transición normal */
+  transition: transform 0.3s ease-in-out;
 }
 
 .contenedor.pulse {
@@ -67,7 +66,7 @@ ion-toolbar {
   border-radius: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  box-shadow: 
+  box-shadow:
     0 4px 8px rgba(0, 0, 0, 0.2),
     0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -116,5 +115,36 @@ ion-footer {
 @media (max-width: 768px) {
   .contenedor {
     padding: 15px;
+  }
+}
+
+.mensaje-agregado {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #ffffff;
+  background-color: #fca311;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  box-shadow: 0 0 10px #fca311;
+  animation: fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
   }
 }

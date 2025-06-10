@@ -1,13 +1,52 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>ayuda</ion-title>
+    <ion-title>Ayuda</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ayuda</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Preguntas Frecuentes</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>¿Cómo puedo cambiar mi contraseña?</ion-label>
+          <ion-button fill="outline" (click)="mostrarRespuesta('Para cambiar tu contraseña, ve a Configuración.')">
+            Ver respuesta
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>¿Cómo agrego una película a favoritos?</ion-label>
+          <ion-button fill="outline" (click)="mostrarRespuesta('Para agregar una película a favoritos, ve a la página de películas y selecciona Agregar a Favoritos.')">
+            Ver respuesta
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="navbar-center">
+      <ion-button routerLink="/home">
+        <ion-icon name="home-outline"></ion-icon>
+        Home
+      </ion-button>
+      <ion-button routerLink="/perfil">
+        <ion-icon name="person-outline"></ion-icon>
+        Perfil
+      </ion-button>
+      <ion-button routerLink="/favoritos">
+        <ion-icon name="heart-outline"></ion-icon>
+        Favoritos
+      </ion-button>
+      <ion-button routerLink="/ayuda">
+        <ion-icon name="help-circle-outline"></ion-icon>
+        Ayuda
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
