@@ -1,0 +1,25 @@
+<div class="ion-padding">
+  <h2>Prueba de API</h2>
+
+  <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+  <p *ngIf="error" class="ion-text-center">{{ error }}</p>
+  <ion-list *ngIf="!cargando && !error">
+    <ion-item *ngFor="let p of posts">
+      <ion-label>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.body }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <hr />
+
+  <ion-button expand="block" (click)="obtenerUbicacion()" [disabled]="cargandoUbicacion">
+    {{ cargandoUbicacion ? 'Obteniendo ubicación…' : 'Mostrar mi ubicación' }}
+  </ion-button>
+
+  <div *ngIf="ubicacion" class="ion-margin-top">
+    <p><strong>Latitud:</strong> {{ ubicacion.lat }}</p>
+    <p><strong>Longitud:</strong> {{ ubicacion.lng }}</p>
+  </div>
+</div>

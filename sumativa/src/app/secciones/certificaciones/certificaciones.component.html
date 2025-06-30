@@ -1,0 +1,13 @@
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Certificaciones</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let c of certs">
+      <ion-label>
+        <h2>{{ c.titulo }}</h2>
+        <p>{{ c.fecha }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
