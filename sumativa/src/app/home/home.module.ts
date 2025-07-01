@@ -9,7 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { MisDatosComponent } from '../secciones/mis-datos/mis-datos.component';
 import { ExperienciaLaboralComponent } from '../secciones/experiencia-laboral/experiencia-laboral.component';
 import { CertificacionesComponent } from '../secciones/certificaciones/certificaciones.component';
-import { ApiTestComponent } from '../secciones/api-test/api-test.component';  // test component
+import { ApiTestComponent } from '../secciones/api-test/api-test.component';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { ApiTestComponent } from '../secciones/api-test/api-test.component';  //
     MisDatosComponent,
     ExperienciaLaboralComponent,
     CertificacionesComponent,
-    ApiTestComponent   
+    ApiTestComponent
   ]
 })
 export class HomePageModule {}

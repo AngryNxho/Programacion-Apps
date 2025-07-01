@@ -1,29 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService, Post } from '../../services/api.service';
+import { HttpClient } from '@angular/common/http';
 import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-api-test',
   templateUrl: './api-test.component.html',
   styleUrls: ['./api-test.component.scss'],
-  standalone: false
 })
 export class ApiTestComponent implements OnInit {
-  posts: Post[] = [];
+  posts: any[] = [];
   cargando = true;
   error = '';
-  ubicacion: { lat: number; lng: number } | null = null; 
-  cargandoUbicacion = false;                             
+  ubicacion: { lat: number; lng: number } | null = null;
+  cargandoUbicacion = false;
 
-  constructor(private api: ApiService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.api.fetchPosts().subscribe({
+    this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts').subscribe({
       next: data => {
+        console.log('POSTS RECIBIDOS:', data);
         this.posts = data;
         this.cargando = false;
       },
-      error: () => {
+      error: err => {
+        console.error('Error al cargar posts:', err);
         this.error = 'No se pudieron cargar los posts.';
         this.cargando = false;
       }
@@ -31,15 +32,20 @@ export class ApiTestComponent implements OnInit {
   }
 
   async obtenerUbicacion() {
+    this.cargandoUbicacion = true;
+
     try {
-      this.cargandoUbicacion = true;
+      const permisos = await Geolocation.requestPermissions();
+      console.log('Permisos solicitados:', permisos);
+
       const pos = await Geolocation.getCurrentPosition();
       this.ubicacion = {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude
       };
     } catch (e) {
-      console.error('Error al obtener ubicación', e);
+      console.error('Error al obtener ubicación:', e);
+      this.error = 'Error al obtener ubicación.';
     } finally {
       this.cargandoUbicacion = false;
     }
