@@ -6,6 +6,7 @@ import { Geolocation } from '@capacitor/geolocation';
   selector: 'app-api-test',
   templateUrl: './api-test.component.html',
   styleUrls: ['./api-test.component.scss'],
+  standalone: false,
 })
 export class ApiTestComponent implements OnInit {
   posts: any[] = [];
