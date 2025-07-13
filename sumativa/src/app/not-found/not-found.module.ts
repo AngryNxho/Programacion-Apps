@@ -1,14 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { NotFoundRoutingModule } from './not-found-routing.module';
-
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { NotFoundPageRoutingModule } from './not-found-routing.module';
+import { NotFoundPage } from './not-found.page';
 
 @NgModule({
-  declarations: [],
+  declarations: [NotFoundPage],
   imports: [
     CommonModule,
-    NotFoundRoutingModule
-  ]
+    IonicModule,
+    NotFoundPageRoutingModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class NotFoundModule { }
+export class NotFoundModule {}

@@ -1,13 +1,20 @@
-<ion-content class="ion-padding">
-  <ion-list>
-    <ion-list-header>
-      <ion-label>Certificaciones</ion-label>
-    </ion-list-header>
-    <ion-item *ngFor="let c of certs">
-      <ion-label>
-        <h2>{{ c.titulo }}</h2>
-        <p>{{ c.fecha }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Certificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-container">
+  <div class="contenedor">
+    <ion-input [(ngModel)]="nueva" placeholder="Nueva certificación" label="Certificación" labelPlacement="stacked"></ion-input>
+    <div class="buttons">
+      <ion-button expand="full" (click)="agregar()">Agregar</ion-button>
+    </div>
+
+    <div class="peliculas-container" *ngIf="certificaciones.length">
+      <ion-item *ngFor="let c of certificaciones">
+        <ion-label>{{ c }}</ion-label>
+      </ion-item>
+    </div>
+  </div>
 </ion-content>

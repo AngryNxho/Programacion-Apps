@@ -1,18 +1,18 @@
-<ion-content class="ion-padding perfil-container">
-  <ion-card class="perfil-card">
-    <ion-card-header>
-      <ion-card-title class="perfil-title">Información del Perfil</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item class="input-item">
-        <ion-label position="stacked">Nombre</ion-label>
-        <ion-input [(ngModel)]="nombre" placeholder="Tu nombre"></ion-input>
-      </ion-item>
-      <ion-item class="input-item">
-        <ion-label position="stacked">Correo Electrónico</ion-label>
-        <ion-input type="email" [(ngModel)]="email" placeholder="Tu correo electrónico"></ion-input>
-      </ion-item>
-      <ion-button expand="block" (click)="guardarPerfil()">Guardar Cambios</ion-button>
-    </ion-card-content>
-  </ion-card>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Datos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-container">
+  <div class="contenedor">
+    <ion-input [(ngModel)]="nombre" placeholder="Nombre" label="Nombre" labelPlacement="stacked"></ion-input>
+    <ion-input [(ngModel)]="email" type="email" placeholder="Email" label="Email" labelPlacement="stacked"></ion-input>
+    <ion-input [(ngModel)]="generoFavorito" placeholder="Género Favorito" label="Género" labelPlacement="stacked"></ion-input>
+    <ion-input [(ngModel)]="ciudad" placeholder="Ciudad" label="Ciudad" labelPlacement="stacked"></ion-input>
+
+    <div class="buttons">
+      <ion-button expand="full" (click)="guardar()">Guardar Datos</ion-button>
+    </div>
+  </div>
 </ion-content>

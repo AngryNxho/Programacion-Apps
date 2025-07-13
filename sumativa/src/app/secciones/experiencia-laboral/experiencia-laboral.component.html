@@ -1,13 +1,24 @@
-<ion-content class="ion-padding">
-  <ion-list>
-    <ion-list-header>
-      <ion-label>Mi Experiencia Laboral</ion-label>
-    </ion-list-header>
-    <ion-item *ngFor="let exp of experiencias">
-      <ion-label>
-        <h2>{{ exp.empresa }}</h2>
-        <p>{{ exp.cargo }} — {{ exp.anios }} año{{ exp.anios>1?'s':'' }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Experiencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="main-container">
+  <div class="contenedor">
+    <ion-input [(ngModel)]="nueva.titulo" placeholder="Puesto o Actividad" label="Actividad" labelPlacement="stacked"></ion-input>
+    <ion-textarea [(ngModel)]="nueva.descripcion" placeholder="Descripción"></ion-textarea>
+    <div class="buttons">
+      <ion-button expand="full" (click)="agregar()">Agregar Experiencia</ion-button>
+    </div>
+
+    <div class="peliculas-container" *ngIf="experiencias.length">
+      <ion-item *ngFor="let e of experiencias">
+        <ion-label>
+          <h2>{{ e.titulo }}</h2>
+          <p>{{ e.descripcion }}</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
 </ion-content>

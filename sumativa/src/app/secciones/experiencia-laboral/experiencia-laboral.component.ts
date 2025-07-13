@@ -4,14 +4,22 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-experiencia-laboral',
   templateUrl: './experiencia-laboral.component.html',
   styleUrls: ['./experiencia-laboral.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class ExperienciaLaboralComponent implements OnInit {
-  experiencias = [
-    { empresa: 'Duoc UC', cargo: 'Tutor', anios: 1 },
-    { empresa: 'Proyecto XYZ', cargo: 'Desarrollador', anios: 2 }
-  ];
+  experiencias: { titulo: string, descripcion: string }[] = [];
+  nueva = { titulo: '', descripcion: '' };
 
   ngOnInit() {
+    const guardado = localStorage.getItem('experienciaCine');
+    this.experiencias = guardado ? JSON.parse(guardado) : [];
+  }
+
+  agregar() {
+    if (!this.nueva.titulo.trim() || !this.nueva.descripcion.trim()) return;
+
+    this.experiencias.push({ ...this.nueva });
+    localStorage.setItem('experienciaCine', JSON.stringify(this.experiencias));
+    this.nueva = { titulo: '', descripcion: '' };
   }
 }

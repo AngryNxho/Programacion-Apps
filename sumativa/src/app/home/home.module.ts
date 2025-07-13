@@ -20,9 +20,6 @@ import { ApiTestComponent } from '../secciones/api-test/api-test.component';
   ],
   declarations: [
     HomePage,
-    MisDatosComponent,
-    ExperienciaLaboralComponent,
-    CertificacionesComponent,
     ApiTestComponent
   ]
 })

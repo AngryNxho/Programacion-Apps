@@ -6,6 +6,7 @@
       <ion-segment-button value="misdatos">Mis Datos</ion-segment-button>
       <ion-segment-button value="experiencia">Experiencia</ion-segment-button>
       <ion-segment-button value="certificaciones">Certificaciones</ion-segment-button>
+      <ion-segment-button value="favoritos">Favoritos</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
@@ -21,17 +22,11 @@
       <ion-card-content class="peliculas-container">
         <ion-item class="input-container">
           <ion-label position="stacked">Título</ion-label>
-          <ion-input
-            [(ngModel)]="nuevaPelicula.titulo"
-            placeholder="Ingrese el título"
-          ></ion-input>
+          <ion-input [(ngModel)]="nuevaPelicula.titulo" placeholder="Ingrese el título"></ion-input>
         </ion-item>
         <ion-item class="input-container">
           <ion-label position="stacked">Descripción</ion-label>
-          <ion-textarea
-            [(ngModel)]="nuevaPelicula.descripcion"
-            placeholder="Ingrese una breve descripción"
-          ></ion-textarea>
+          <ion-textarea [(ngModel)]="nuevaPelicula.descripcion" placeholder="Ingrese una breve descripción"></ion-textarea>
         </ion-item>
         <div class="buttons">
           <ion-button expand="block" (click)="agregarAFavoritos()">Agregar</ion-button>
@@ -44,17 +39,19 @@
   </ng-container>
 
   <ng-container *ngIf="segmentValue === 'misdatos'">
-    <app-mis-datos></app-mis-datos>
+    <ion-button expand="block" routerLink="/mis-datos">Ir a Mis Datos</ion-button>
   </ng-container>
 
   <ng-container *ngIf="segmentValue === 'experiencia'">
-    <app-experiencia-laboral></app-experiencia-laboral>
-    <hr />
-    <app-api-test></app-api-test>
+    <ion-button expand="block" routerLink="/experiencia-laboral">Ir a Experiencia Laboral</ion-button>
   </ng-container>
 
   <ng-container *ngIf="segmentValue === 'certificaciones'">
-    <app-certificaciones></app-certificaciones>
+    <ion-button expand="block" routerLink="/certificaciones">Ir a Certificaciones</ion-button>
+  </ng-container>
+
+  <ng-container *ngIf="segmentValue === 'favoritos'">
+    <ion-button expand="block" routerLink="/favoritos">Ir a Favoritos</ion-button>
   </ng-container>
 
 </ion-content>
