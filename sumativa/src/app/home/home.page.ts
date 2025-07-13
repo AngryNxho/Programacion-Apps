@@ -15,7 +15,9 @@ export class HomePage implements OnInit {
   peliculasFavoritas: any[] = []
   mensajeAgregado = false
   animando = false
-  segmentValue: 'peliculas' | 'misdatos' | 'experiencia' | 'certificaciones' | 'favoritos' = 'peliculas';
+  segmentValue: 'peliculas' | 'misdatos' | 'experiencia' | 'certificaciones' | 'favoritos' | 'ayuda' = 'peliculas';
+
+
 
 
   constructor(

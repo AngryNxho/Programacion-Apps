@@ -1,57 +1,35 @@
-<ion-header>
+<ion-footer>
   <ion-toolbar>
-    <ion-title>Inicio</ion-title>
-    <ion-segment [(ngModel)]="segmentValue">
-      <ion-segment-button value="peliculas">Películas</ion-segment-button>
-      <ion-segment-button value="misdatos">Mis Datos</ion-segment-button>
-      <ion-segment-button value="experiencia">Experiencia</ion-segment-button>
-      <ion-segment-button value="certificaciones">Certificaciones</ion-segment-button>
-      <ion-segment-button value="favoritos">Favoritos</ion-segment-button>
-    </ion-segment>
+    <div class="navbar-center">
+      <ion-button routerLink="/home">
+        <ion-icon name="home-outline"></ion-icon>
+        Inicio
+      </ion-button>
+
+      <ion-button routerLink="/perfil">
+        <ion-icon name="person-outline"></ion-icon>
+        Perfil
+      </ion-button>
+
+      <ion-button routerLink="/experiencia-laboral">
+        <ion-icon name="briefcase-outline"></ion-icon>
+        Experiencia
+      </ion-button>
+
+      <ion-button routerLink="/certificaciones">
+        <ion-icon name="ribbon-outline"></ion-icon>
+        Certificaciones
+      </ion-button>
+
+      <ion-button routerLink="/favoritos">
+        <ion-icon name="heart-outline"></ion-icon>
+        Favoritos
+      </ion-button>
+
+      <ion-button routerLink="/ayuda">
+        <ion-icon name="help-circle-outline"></ion-icon>
+        Ayuda
+      </ion-button>
+    </div>
   </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding main-container">
-
-  <ng-container *ngIf="segmentValue === 'peliculas'">
-    <h2 class="welcome-title">¡Bienvenido, {{ usuario }}!</h2>
-    <ion-card class="contenedor" [ngClass]="{ pulse: animando }">
-      <ion-card-header>
-        <ion-card-title>Agregar Nueva Película</ion-card-title>
-      </ion-card-header>
-      <ion-card-content class="peliculas-container">
-        <ion-item class="input-container">
-          <ion-label position="stacked">Título</ion-label>
-          <ion-input [(ngModel)]="nuevaPelicula.titulo" placeholder="Ingrese el título"></ion-input>
-        </ion-item>
-        <ion-item class="input-container">
-          <ion-label position="stacked">Descripción</ion-label>
-          <ion-textarea [(ngModel)]="nuevaPelicula.descripcion" placeholder="Ingrese una breve descripción"></ion-textarea>
-        </ion-item>
-        <div class="buttons">
-          <ion-button expand="block" (click)="agregarAFavoritos()">Agregar</ion-button>
-        </div>
-        <div *ngIf="mensajeAgregado" class="mensaje-agregado">
-          🎬 ¡Película agregada!
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </ng-container>
-
-  <ng-container *ngIf="segmentValue === 'misdatos'">
-    <ion-button expand="block" routerLink="/mis-datos">Ir a Mis Datos</ion-button>
-  </ng-container>
-
-  <ng-container *ngIf="segmentValue === 'experiencia'">
-    <ion-button expand="block" routerLink="/experiencia-laboral">Ir a Experiencia Laboral</ion-button>
-  </ng-container>
-
-  <ng-container *ngIf="segmentValue === 'certificaciones'">
-    <ion-button expand="block" routerLink="/certificaciones">Ir a Certificaciones</ion-button>
-  </ng-container>
-
-  <ng-container *ngIf="segmentValue === 'favoritos'">
-    <ion-button expand="block" routerLink="/favoritos">Ir a Favoritos</ion-button>
-  </ng-container>
-
-</ion-content>
+</ion-footer>

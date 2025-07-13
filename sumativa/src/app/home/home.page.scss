@@ -148,3 +148,49 @@ ion-footer {
     transform: scale(0.9);
   }
 }
+
+
+.seccion-navegacion ion-button {
+  --background: #4d8dff;
+  color: #14213d;
+  font-weight: bold;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+ion-footer {
+  background-color: #fca311;
+  border-top: 2px solid #14213d;
+  padding: 0;
+}
+
+ion-footer ion-toolbar {
+  --background: #fca311;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-footer .ion-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+ion-footer ion-button {
+  --background: #4d8dff;
+  --color: #14213d;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 3px 3px 10px #00000044;
+  border-radius: 12px;
+  margin: 5px;
+}
+
+ion-footer ion-button:hover {
+  filter: brightness(1.1);
+}
