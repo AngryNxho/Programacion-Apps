@@ -104,7 +104,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ju
 		ADDED from C:\Users\JustNxho\Documents\Programacion-Apps\sumativa\android\app\src\main\AndroidManifest.xml:5:9-35
 	android:theme
 		ADDED from C:\Users\JustNxho\Documents\Programacion-Apps\sumativa\android\app\src\main\AndroidManifest.xml:10:9-40
-activity#app.sumativa.MainActivity
+activity#io.ionic.starter.MainActivity
 ADDED from C:\Users\JustNxho\Documents\Programacion-Apps\sumativa\android\app\src\main\AndroidManifest.xml:12:9-25:20
 	android:label
 		ADDED from C:\Users\JustNxho\Documents\Programacion-Apps\sumativa\android\app\src\main\AndroidManifest.xml:15:13-56
@@ -284,7 +284,7 @@ ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\t
 		ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:23:9-81
-permission#app.sumativa.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+permission#io.ionic.starter.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:22:5-24:47
 	android:protectionLevel
 		ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:24:9-44
@@ -294,7 +294,7 @@ uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
-uses-permission#app.sumativa.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission#io.ionic.starter.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:26:5-97
 	android:name
 		ADDED from [androidx.core:core:1.15.0] C:\Users\JustNxho\.gradle\caches\8.11.1\transforms\5f51ed623ec66baebfa6a053fe8a8b2a\transformed\core-1.15.0\AndroidManifest.xml:26:22-94

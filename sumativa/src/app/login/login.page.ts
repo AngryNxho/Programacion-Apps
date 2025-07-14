@@ -30,18 +30,20 @@ export class LoginPage {
 
   async iniciarSesion() {
     if (!this.dbService['db']) {
+      console.log('[LOGIN] ❌ DB no inicializada');
       alert('⚠️ Error: SQLite no está inicializado.');
       return;
     }
-
+    console.log('[LOGIN] Verificando credenciales...');
     const valido = await this.dbService.validarUsuario(this.usuario, this.contrasena);
-
+    console.log('[LOGIN] Resultado validación:', valido);
 
     if (valido) {
       await this.dbService.actualizarEstadoSesion(this.usuario, true);
       await this.dbService.registerSession(this.usuario, 'token-fake');
       this.router.navigateByUrl('/home');
     } else {
+      console.log('[LOGIN] ❌ Usuario o contraseña incorrectos');
       alert('Usuario o contraseña incorrectos');
     }
   }

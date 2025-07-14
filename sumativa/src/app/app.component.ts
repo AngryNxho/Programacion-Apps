@@ -28,17 +28,31 @@ export class AppComponent {
       location: 'default'
     });
 
-  await db.executeSql(`
+  // await db.executeSql(`
+  //   CREATE TABLE IF NOT EXISTS sesion_data (
+  //     user_name TEXT PRIMARY KEY NOT NULL,
+  //     password TEXT NOT NULL,
+  //     active INTEGER NOT NULL
+  // );`, []);
+
+  //     await db.executeSql(
+  //   'INSERT OR IGNORE INTO sesion_data (user_name, password, active) VALUES (?, ?, ?)',
+  //   ['admin123', '1234', 0]
+  // );
+
+    await db.executeSql(`
     CREATE TABLE IF NOT EXISTS sesion_data (
-      user_name TEXT PRIMARY KEY NOT NULL,
-      password TEXT NOT NULL,
+      user_name TEXT PRIMARY KEY NOT NULL, 
+      password INTEGER NOT NULL,
       active INTEGER NOT NULL
   );`, []);
-
-      await db.executeSql(
+    
+  await db.executeSql(
     'INSERT OR IGNORE INTO sesion_data (user_name, password, active) VALUES (?, ?, ?)',
-    ['admin123', '1234', 0]
-  );
+    ['admin123', 1234, 0]
+  ).then(() => console.log('✅ Usuario admin123 insertado'))
+   .catch(err => console.error('❌ Error insertando admin123', err));
+
 
 
     const sesionActiva = await this.db.existeSesionActiva(); 

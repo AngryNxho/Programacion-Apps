@@ -1,10 +1,9 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.sumativa.app',
+  appId: 'io.ionic.starter',
   appName: 'Sumativa',
-  webDir: 'www',
-  bundledWebRuntime: false
+  webDir: 'www'
 };
 
 export default config;

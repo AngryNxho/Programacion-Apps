@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "app.sumativa.app-mergeDebugResources-31:/values-am/values-am.xml",
+            "outputFile": "io.ionic.starter.app-mergeDebugResources-31:/values-am/values-am.xml",
             "map": [
                 {
                     "source": "C:\\Users\\JustNxho\\.gradle\\caches\\8.11.1\\transforms\\eb1abcd433ebd6830d96edea1f30a050\\transformed\\biometric-1.1.0\\res\\values-am\\values-am.xml",
