@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DbtaskService } from './dbtask.service';
+import { DbTaskService } from './dbtask.service';
 
 describe('DbtaskService', () => {
-  let service: DbtaskService;
+  let service: DbTaskService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DbtaskService);
+    service = TestBed.inject(DbTaskService);
   });
 
   it('should be created', () => {

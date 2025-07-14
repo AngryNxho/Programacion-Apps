@@ -1,0 +1,14 @@
+{
+  "peliculas": [
+    {
+      "id": 1,
+      "titulo": "Matrix",
+      "descripcion": "Sci-fi 1999"
+    },
+    {
+      "id": 2,
+      "titulo": "Interestelar",
+      "descripcion": "Espacio y tiempo"
+    }
+  ]
+}

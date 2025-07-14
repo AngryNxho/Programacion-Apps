@@ -1,0 +1,60 @@
+<!-- src/app/home/experiencia-laboral/experiencia-laboral.component.html -->
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-title>Experiencia Laboral</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding main-container">
+  <ion-card class="contenedor">
+    <ion-card-header>
+      <ion-card-title>Agregar Experiencia</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="input-container">
+        <ion-label position="floating">Empresa</ion-label>
+        <ion-input [(ngModel)]="experiencia.empresa"></ion-input>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="floating">Año Inicio</ion-label>
+        <ion-input type="number" [(ngModel)]="experiencia.anoInicio"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>¿Trabajas actualmente?</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="experiencia.trabajando"></ion-checkbox>
+      </ion-item>
+
+      <ion-item *ngIf="!experiencia.trabajando" class="input-container">
+        <ion-label position="floating">Año Fin</ion-label>
+        <ion-input type="number" [(ngModel)]="experiencia.anoFin"></ion-input>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="floating">Cargo</ion-label>
+        <ion-input [(ngModel)]="experiencia.cargo"></ion-input>
+      </ion-item>
+
+      <div class="buttons">
+        <ion-button expand="block" (click)="guardarExperiencia()">Guardar</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list class="peliculas-container">
+    <ion-item *ngFor="let e of listaExperiencia">
+      <ion-label>
+        <h3>
+          {{ e.empresa }} ({{ e.anoInicio }}
+          <span *ngIf="e.trabajando; else fin">– actualidad</span>
+          <ng-template #fin>– {{ e.anoFin }}</ng-template>)
+        </h3>
+        <p>{{ e.cargo }}</p>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="listaExperiencia.length === 0">
+      Aún no has agregado experiencia.
+    </ion-item>
+  </ion-list>
+</ion-content>

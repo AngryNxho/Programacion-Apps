@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -8,55 +8,34 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class HomePage implements OnInit {
-  usuario: string = '';
-  nuevaPelicula = {
-    titulo: '',
-    descripcion: ''
-  };
-  peliculasFavoritas: any[] = [];
-  animando: boolean = false;
-  mensajeAgregado: boolean = false;
+  peliculas: { id: number; titulo: string; descripcion: string }[] = [];
+  nuevaPelicula = { titulo: '', descripcion: '' };
 
-  constructor(private router: Router) {}
+  constructor(private api: ApiService) {}
 
-  ngOnInit() {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras?.state && navigation.extras.state['usuario']) {
-      this.usuario = navigation.extras.state['usuario'];
-    }
-
-    const storedPeliculas = localStorage.getItem('peliculasFavoritas');
-    if (storedPeliculas) {
-      this.peliculasFavoritas = JSON.parse(storedPeliculas);
-    }
+  ngOnInit(): void {
+    this.cargarPeliculas();
   }
 
-  agregarAFavoritos() {
-    if (this.nuevaPelicula.titulo.trim() && this.nuevaPelicula.descripcion.trim()) {
-      this.animando = true;
+  cargarPeliculas(): void {
+    this.api.getPeliculas().subscribe((data) => {
+      this.peliculas = data;
+    });
+  }
 
-      this.peliculasFavoritas.push({
-        titulo: this.nuevaPelicula.titulo,
-        descripcion: this.nuevaPelicula.descripcion
-      });
+  agregarPelicula(): void {
+    const { titulo, descripcion } = this.nuevaPelicula;
+    if (!titulo.trim() || !descripcion.trim()) return;
 
-      localStorage.setItem('peliculasFavoritas', JSON.stringify(this.peliculasFavoritas));
-
-      this.mensajeAgregado = true;
-      setTimeout(() => {
-        this.animando = false;
-        this.mensajeAgregado = false;
-      }, 3000);
-
+    this.api.addPelicula({ titulo, descripcion }).subscribe(() => {
       this.nuevaPelicula = { titulo: '', descripcion: '' };
-    } else {
-      alert('Por favor complete ambos campos.');
-    }
-
-    console.log('Array completo:', this.peliculasFavoritas);
-    console.log('localStorage:', localStorage.getItem('peliculasFavoritas'));
+      this.cargarPeliculas();
+    });
   }
 
-  
+  eliminarPelicula(id: number): void {
+    this.api.deletePelicula(id).subscribe(() => {
+      this.cargarPeliculas();
+    });
+  }
 }
-

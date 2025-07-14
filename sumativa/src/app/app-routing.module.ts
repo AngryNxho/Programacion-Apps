@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
-// import { NotFoundPage } from './not-found/not-found.page';
- // si ya la creaste
 
 const routes: Routes = [
   {
@@ -39,11 +37,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./secciones/ayuda/ayuda.module').then(m => m.AyudaPageModule)
   },
-  // Página 404 (Semana 6)
-  // {
-  //   path: '**',
-  //   component: NotFoundPage
-  // }
+
+  {
+    path: '**',
+    loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundPageModule)
+  }
+
+
 ];
 
 @NgModule({

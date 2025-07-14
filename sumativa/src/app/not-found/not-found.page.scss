@@ -1,0 +1,25 @@
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.not-found-container h1 {
+  font-size: 6rem;
+  color: #fca311;
+  margin: 0;
+}
+
+.not-found-container p {
+  font-size: 1.2rem;
+  margin: 20px 0;
+}
+
+ion-button {
+  --background: #fca311;
+  --color: #14213d;
+}

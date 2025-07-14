@@ -1,0 +1,47 @@
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-title>Certificaciones</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding main-container">
+  <ion-card class="contenedor">
+    <ion-card-header>
+      <ion-card-title>Agregar Certificación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item class="input-container">
+        <ion-label position="floating">Nombre Certificado</ion-label>
+        <ion-input [(ngModel)]="cert.nombre"></ion-input>
+      </ion-item>
+      <ion-item class="input-container">
+        <ion-label position="floating">Fecha de Obtención</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="cert.fechaObtencion"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>¿Vence?</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="cert.vencimiento"></ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="cert.vencimiento" class="input-container">
+        <ion-label position="floating">Fecha de Vencimiento</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="cert.fechaVencimiento"></ion-datetime>
+      </ion-item>
+      <div class="buttons">
+        <ion-button expand="block" (click)="guardarCert()">Guardar</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list class="peliculas-container">
+    <ion-item *ngFor="let c of listaCerts">
+      <ion-label>
+        <h3>{{ c.nombre }} – {{ c.fechaObtencion }}</h3>
+        <p *ngIf="c.vencimiento">Vence: {{ c.fechaVencimiento }}</p>
+        <p *ngIf="!c.vencimiento">Sin vencimiento</p>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="listaCerts.length === 0">
+      Aún no has agregado certificaciones.
+    </ion-item>
+  </ion-list>
+</ion-content>
