@@ -1,5 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "sumativa",
-	"webDir": "www"
+	"appId": "com.sumativa.app",
+	"appName": "Sumativa",
+	"webDir": "www",
+	"bundledWebRuntime": false
 }

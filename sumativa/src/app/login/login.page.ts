@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
+import { DbTaskService } from '../services/dbtask.service';
 
 @Component({
   selector: 'app-login',
@@ -8,34 +9,37 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./login.page.scss'],
   standalone: false,
 })
-export class LoginPage {
-  usuario: string = '';
-  password: string = '';
+export class LoginPage implements OnInit {
+  usuario = '';
+  password = '';
 
-  constructor(private alertController: AlertController, private router: Router) {}
+  constructor(
+    private alertController: AlertController,
+    private router: Router,
+    private db: DbTaskService
+  ) {}
 
-  async login() {
+  ngOnInit(): void {}
+
+  async login(): Promise<void> {
     const usuarioRegex = /^[a-zA-Z0-9]{3,8}$/;
     if (!usuarioRegex.test(this.usuario)) {
-      this.showAlert('Error', 'El usuario debe ser alfanumérico y tener entre 3 y 8 caracteres.');
-      return;
+      return this.showAlert('Error', 'El usuario debe ser alfanumérico y tener entre 3 y 8 caracteres.');
     }
 
     if (this.password.length !== 4 || isNaN(Number(this.password))) {
-      this.showAlert('Error', 'La contraseña debe ser un número de 4 dígitos.');
-      return;
+      return this.showAlert('Error', 'La contraseña debe ser un número de 4 dígitos.');
     }
 
-    const navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario
-      }
-    };
+    await this.db.clearSesion();
+    await this.db.guardarSesion({ usuario: this.usuario, token: this.password });
 
-    this.router.navigate(['/home'], navigationExtras);
+
+    
+    this.router.navigateByUrl('/home');
   }
 
-  async showAlert(header: string, message: string) {
+  private async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,

@@ -1,11 +1,11 @@
 [
 	{
-		"pkg": "@capacitor/app",
-		"classpath": "com.capacitorjs.plugins.app.AppPlugin"
+		"pkg": "@capacitor-community/sqlite",
+		"classpath": "com.getcapacitor.community.database.sqlite.CapacitorSQLitePlugin"
 	},
 	{
-		"pkg": "@capacitor/geolocation",
-		"classpath": "com.capacitorjs.plugins.geolocation.GeolocationPlugin"
+		"pkg": "@capacitor/app",
+		"classpath": "com.capacitorjs.plugins.app.AppPlugin"
 	},
 	{
 		"pkg": "@capacitor/haptics",

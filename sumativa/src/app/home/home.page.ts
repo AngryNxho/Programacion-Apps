@@ -56,4 +56,7 @@ export class HomePage implements OnInit {
     console.log('Array completo:', this.peliculasFavoritas);
     console.log('localStorage:', localStorage.getItem('peliculasFavoritas'));
   }
+
+  
 }
+
