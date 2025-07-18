@@ -9,10 +9,13 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
   usuario: string = '';
+  segmentoSeleccionado = 'experiencia';
+
   nuevaPelicula = {
     titulo: '',
     descripcion: ''
   };
+
   peliculasFavoritas: any[] = [];
   animando: boolean = false;
   mensajeAgregado: boolean = false;
@@ -32,6 +35,14 @@ export class HomePage implements OnInit {
   }
 
   agregarAFavoritos() {
+
+
+    nuevaPelicula = {
+      titulo: '',
+      descripcion: '',
+      calificacion: 3
+    };
+
     if (this.nuevaPelicula.titulo.trim() && this.nuevaPelicula.descripcion.trim()) {
       this.animando = true;
 
@@ -40,6 +51,7 @@ export class HomePage implements OnInit {
         descripcion: this.nuevaPelicula.descripcion
       });
 
+      
       localStorage.setItem('peliculasFavoritas', JSON.stringify(this.peliculasFavoritas));
 
       this.mensajeAgregado = true;
@@ -52,8 +64,8 @@ export class HomePage implements OnInit {
     } else {
       alert('Por favor complete ambos campos.');
     }
-
-    console.log('Array completo:', this.peliculasFavoritas);
-    console.log('localStorage:', localStorage.getItem('peliculasFavoritas'));
   }
+
+
+  
 }

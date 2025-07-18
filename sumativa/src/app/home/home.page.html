@@ -7,28 +7,106 @@
 <ion-content class="ion-padding main-container">
   <h2 class="welcome-title">¡Bienvenido, {{ usuario }}!</h2>
 
-  <ion-card class="contenedor">
-    <ion-card-header>
-      <ion-card-title>Agregar Nueva Película</ion-card-title>
-    </ion-card-header>
-    <ion-card-content class="peliculas-container">
-      <ion-item class="input-container">
-        <ion-label position="floating">Título de la Película</ion-label>
-        <ion-input [(ngModel)]="nuevaPelicula.titulo" placeholder="Ingrese el título"></ion-input>
-      </ion-item>
-      <ion-item class="input-container">
-        <ion-label position="floating">Descripción</ion-label>
-        <ion-textarea [(ngModel)]="nuevaPelicula.descripcion" placeholder="Ingrese una breve descripción"></ion-textarea>
-      </ion-item>
-      <div class="buttons">
-        <ion-button expand="block" (click)="agregarAFavoritos()">Agregar a Favoritos</ion-button>
-      </div>
 
-      <div *ngIf="mensajeAgregado" class="mensaje-agregado animate">
-        🎬 ¡Película agregada a favoritos!
-      </div>
-    </ion-card-content>
-  </ion-card>
+    <ion-segment [(ngModel)]="segmentoSeleccionado">
+    <ion-segment-button value="peliculas">
+      <ion-label>Películas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="experiencia">
+      <ion-label>Historial de Películas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="certificaciones">
+      <ion-label>Películas Destacadas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="datos">
+      <ion-label>Perfil de Usuario</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div class="contenedor">
+    <ng-container [ngSwitch]="segmentoSeleccionado">
+
+      <ng-container *ngSwitchCase="'peliculas'">
+        <ion-card class="contenedor">
+          <ion-card-header>
+            <ion-card-title>Agregar Nueva Película</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="peliculas-container">
+            <ion-item class="input-container">
+              <ion-label position="floating">Título de la Película</ion-label>
+              <ion-input [(ngModel)]="nuevaPelicula.titulo" placeholder="Ingrese el título"></ion-input>
+            </ion-item>
+            <ion-item class="input-container">
+              <ion-label position="floating">Descripción</ion-label>
+              <ion-textarea [(ngModel)]="nuevaPelicula.descripcion" placeholder="Ingrese una breve descripción"></ion-textarea>
+            </ion-item>
+            <div class="buttons">
+              <ion-button expand="block" (click)="agregarAFavoritos()">Agregar a Favoritos</ion-button>
+            </div>
+            <div *ngIf="mensajeAgregado" class="mensaje-agregado animate">
+              🎬 ¡Película agregada a favoritos!
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-list>
+          <ion-item *ngIf="peliculasFavoritas.length === 0">
+            Aún no has agregado películas.
+          </ion-item>
+        </ion-list>
+      </ng-container>
+
+      
+          
+          <ng-container *ngSwitchCase="'experiencia'">
+      <ion-card class="contenedor">
+        <ion-card-header>
+          <ion-card-title>Agregar al Historial de Películas</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="peliculas-container">
+          <ion-item class="input-container">
+            <ion-label position="floating">Título</ion-label>
+            <ion-input [(ngModel)]="nuevaPelicula.titulo" placeholder="Nombre de la película"></ion-input>
+          </ion-item>
+
+          <ion-item class="input-container">
+            <ion-label position="floating">Descripción</ion-label>
+            <ion-textarea [(ngModel)]="nuevaPelicula.descripcion" placeholder="Tu opinión o resumen"></ion-textarea>
+          </ion-item>
+
+          <ion-item class="input-container">
+            <ion-label>Calificación</ion-label>
+            <ion-range min="1" max="5" step="1" snaps="true" pin="true" [(ngModel)]="nuevaPelicula.calificacion">
+              <ion-icon size="small" slot="start" name="star-outline"></ion-icon>
+              <ion-icon size="small" slot="end" name="star"></ion-icon>
+            </ion-range>
+          </ion-item>
+
+          <div class="buttons">
+            <ion-button expand="block" (click)="agregarAFavoritos()">Agregar al Historial</ion-button>
+          </div>
+
+          <div *ngIf="mensajeAgregado" class="mensaje-agregado animate">
+            🎬 ¡Película agregada al historial!
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-list>
+        <ion-item *ngIf="peliculasFavoritas.length === 0">
+          No hay películas en el historial.
+        </ion-item>
+      </ion-list>
+    </ng-container>
+
+
+
+      <app-peliculas-destacadas *ngSwitchCase="'certificaciones'"></app-peliculas-destacadas>
+      <app-perfil-usuario *ngSwitchCase="'datos'"></app-perfil-usuario>
+
+    </ng-container>
+  </div>
 </ion-content>
 
 <ion-footer>
