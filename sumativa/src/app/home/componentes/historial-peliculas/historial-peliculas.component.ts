@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-historial-peliculas',
@@ -8,22 +7,33 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   standalone: false
 })
 export class HistorialPeliculasComponent {
-  form: FormGroup;
+  historialPeliculas: any[] = [];
+  nuevaPelicula = {
+    titulo: '',
+    descripcion: '',
+    anio: '',
+    calificacion: 0
+  };
+  mensajeAgregado = false;
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      titulo: ['', Validators.required],
-      anio: ['', [Validators.required, Validators.min(1888)]],
-      fueVista: [false],
-      critica: ['']
-    });
+  agregarAHistorial() {
+    const { titulo, descripcion, anio, calificacion } = this.nuevaPelicula;
+
+    if (titulo.trim() && descripcion.trim() && anio.trim()) {
+      this.historialPeliculas.push({ titulo, descripcion, anio, calificacion });
+      localStorage.setItem('historialPeliculas', JSON.stringify(this.historialPeliculas));
+
+      this.mensajeAgregado = true;
+      setTimeout(() => this.mensajeAgregado = false, 3000);
+
+      this.nuevaPelicula = { titulo: '', descripcion: '', anio: '', calificacion: 0 };
+    } else {
+      alert('Completa todos los campos');
+    }
   }
 
-  guardar() {
-    if (this.form.invalid) return;
-    const historial = JSON.parse(localStorage.getItem('historialPeliculas') || '[]');
-    historial.push(this.form.value);
-    localStorage.setItem('historialPeliculas', JSON.stringify(historial));
-    this.form.reset();
+  ngOnInit() {
+    const stored = localStorage.getItem('historialPeliculas');
+    if (stored) this.historialPeliculas = JSON.parse(stored);
   }
 }

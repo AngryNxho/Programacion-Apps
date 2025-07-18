@@ -148,3 +148,38 @@ ion-footer {
     transform: scale(0.9);
   }
 }
+
+
+.estrellas {
+  display: flex;
+  gap: 8px;
+  font-size: 24px;
+  cursor: pointer;
+  color: gold;
+}
+
+
+.calificacion-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 10px 0 8px 0;
+  text-align: left;
+  width: 100%;
+  text-shadow: 1px 1px 2px #000000;
+}
+
+.estrellas {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 30px;
+  color: #444444;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.estrellas .activa {
+  color: gold;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}

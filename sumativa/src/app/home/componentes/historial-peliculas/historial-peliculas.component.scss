@@ -1,0 +1,12 @@
+.estrellas {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.estrella-icono {
+  font-size: 24px;
+  color: #FFD700;
+  cursor: pointer;
+}

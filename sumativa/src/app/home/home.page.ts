@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+interface Pelicula {
+  titulo: string;
+  descripcion: string;
+  calificacion: number;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -8,64 +14,43 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class HomePage implements OnInit {
-  usuario: string = '';
-  segmentoSeleccionado = 'experiencia';
+  usuario = '';
+  segmentoSeleccionado: 'peliculas' | 'experiencia' | 'certificaciones' | 'datos' = 'peliculas';
 
-  nuevaPelicula = {
+  nuevaPelicula: Pelicula = {
     titulo: '',
-    descripcion: ''
+    descripcion: '',
+    calificacion: 0
   };
 
-  peliculasFavoritas: any[] = [];
-  animando: boolean = false;
-  mensajeAgregado: boolean = false;
+  peliculasFavoritas: Pelicula[] = [];
+  mensajeAgregado = false;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation?.extras?.state && navigation.extras.state['usuario']) {
-      this.usuario = navigation.extras.state['usuario'];
+    const nav = this.router.getCurrentNavigation();
+    if (nav?.extras?.state?.['usuario']) {
+      this.usuario = nav.extras.state['usuario'];
     }
-
-    const storedPeliculas = localStorage.getItem('peliculasFavoritas');
-    if (storedPeliculas) {
-      this.peliculasFavoritas = JSON.parse(storedPeliculas);
+    const stored = localStorage.getItem('peliculasFavoritas');
+    if (stored) {
+      this.peliculasFavoritas = JSON.parse(stored);
     }
   }
 
   agregarAFavoritos() {
-
-
-    nuevaPelicula = {
-      titulo: '',
-      descripcion: '',
-      calificacion: 3
-    };
-
-    if (this.nuevaPelicula.titulo.trim() && this.nuevaPelicula.descripcion.trim()) {
-      this.animando = true;
-
-      this.peliculasFavoritas.push({
-        titulo: this.nuevaPelicula.titulo,
-        descripcion: this.nuevaPelicula.descripcion
-      });
-
-      
-      localStorage.setItem('peliculasFavoritas', JSON.stringify(this.peliculasFavoritas));
-
-      this.mensajeAgregado = true;
-      setTimeout(() => {
-        this.animando = false;
-        this.mensajeAgregado = false;
-      }, 3000);
-
-      this.nuevaPelicula = { titulo: '', descripcion: '' };
-    } else {
-      alert('Por favor complete ambos campos.');
+    const { titulo, descripcion, calificacion } = this.nuevaPelicula;
+    if (!titulo.trim() || !descripcion.trim()) {
+      return alert('Por favor complete título y descripción.');
     }
+
+    this.peliculasFavoritas.push({ titulo, descripcion, calificacion });
+    localStorage.setItem('peliculasFavoritas', JSON.stringify(this.peliculasFavoritas));
+
+    this.mensajeAgregado = true;
+    setTimeout(() => this.mensajeAgregado = false, 2000);
+
+    this.nuevaPelicula = { titulo: '', descripcion: '', calificacion: 3 };
   }
-
-
-  
 }
