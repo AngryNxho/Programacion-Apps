@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { DbTaskService } from '../services/dbtask.service';
+import { AlertController } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,41 +10,37 @@ import { DbTaskService } from '../services/dbtask.service';
 })
 export class LoginPage {
   usuario: string = '';
-  contrasena: string = '';
+  password: string = '';
 
-  constructor(
-    private dbService: DbTaskService,
-    private router: Router
-  ) {}
+  constructor(private alertController: AlertController, private router: Router) {}
 
-    ngOnInit() {
-    setTimeout(() => {
-      this.dbService['db']?.executeSql(
-        `INSERT INTO sesion_data (user_name, password, active) VALUES (?, ?, 0)`,
-        ['admin', '1234']
-      ).then(() => console.log('✅ Usuario admin insertado'))
-       .catch(err => console.log('⚠️ Error insertando admin (puede existir ya):', err));
-    }, 1000);
-  }
-
-
-  async iniciarSesion() {
-    if (!this.dbService['db']) {
-      console.log('[LOGIN] ❌ DB no inicializada');
-      alert('⚠️ Error: SQLite no está inicializado.');
+  async login() {
+    const usuarioRegex = /^[a-zA-Z0-9]{3,8}$/;
+    if (!usuarioRegex.test(this.usuario)) {
+      this.showAlert('Error', 'El usuario debe ser alfanumérico y tener entre 3 y 8 caracteres.');
       return;
     }
-    console.log('[LOGIN] Verificando credenciales...');
-    const valido = await this.dbService.validarUsuario(this.usuario, this.contrasena);
-    console.log('[LOGIN] Resultado validación:', valido);
 
-    if (valido) {
-      await this.dbService.actualizarEstadoSesion(this.usuario, true);
-      await this.dbService.registerSession(this.usuario, 'token-fake');
-      this.router.navigateByUrl('/home');
-    } else {
-      console.log('[LOGIN] ❌ Usuario o contraseña incorrectos');
-      alert('Usuario o contraseña incorrectos');
+    if (this.password.length !== 4 || isNaN(Number(this.password))) {
+      this.showAlert('Error', 'La contraseña debe ser un número de 4 dígitos.');
+      return;
     }
+
+    const navigationExtras: NavigationExtras = {
+      state: {
+        usuario: this.usuario
+      }
+    };
+
+    this.router.navigate(['/home'], navigationExtras);
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }
