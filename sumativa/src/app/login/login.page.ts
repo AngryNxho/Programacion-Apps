@@ -1,3 +1,4 @@
+// src/app/login/login.page.ts
 import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
@@ -12,7 +13,10 @@ export class LoginPage {
   usuario: string = '';
   password: string = '';
 
-  constructor(private alertController: AlertController, private router: Router) {}
+  constructor(
+    private alertController: AlertController,
+    private router: Router
+  ) {}
 
   async login() {
     const usuarioRegex = /^[a-zA-Z0-9]{3,8}$/;
@@ -26,16 +30,17 @@ export class LoginPage {
       return;
     }
 
-    const navigationExtras: NavigationExtras = {
-      state: {
-        usuario: this.usuario
-      }
-    };
+    // ✅ Guardamos la "sesión" del usuario
+    localStorage.setItem('user', this.usuario);
 
+    // Navegamos al Home pasando el nombre de usuario
+    const navigationExtras: NavigationExtras = {
+      state: { usuario: this.usuario }
+    };
     this.router.navigate(['/home'], navigationExtras);
   }
 
-  async showAlert(header: string, message: string) {
+  private async showAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
       message,
