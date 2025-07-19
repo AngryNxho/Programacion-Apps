@@ -1,51 +1,50 @@
-<ion-card class="contenedor">
-  <ion-card-header>
-    <ion-card-title>Agregar al Historial de Películas</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
+<ion-card class="contenedor-formulario">
+  <form [formGroup]="formularioPelicula" (ngSubmit)="guardarPelicula()">
     <ion-item>
       <ion-label position="floating">Título</ion-label>
-      <ion-input [(ngModel)]="nuevaPelicula.titulo"></ion-input>
+      <ion-input formControlName="titulo"></ion-input>
     </ion-item>
+    <ion-text color="danger" *ngIf="campoInvalido('titulo')">
+      El título es obligatorio (máx 50 caracteres).
+    </ion-text>
 
     <ion-item>
       <ion-label position="floating">Descripción</ion-label>
-      <ion-textarea [(ngModel)]="nuevaPelicula.descripcion"></ion-textarea>
+      <ion-textarea formControlName="descripcion"></ion-textarea>
     </ion-item>
+    <ion-text color="danger" *ngIf="campoInvalido('descripcion')">
+      La descripción es obligatoria (máx 200 caracteres).
+    </ion-text>
 
     <ion-item>
-      <ion-label position="floating">Año</ion-label>
-      <ion-input [(ngModel)]="nuevaPelicula.anio" type="number"></ion-input>
+      <ion-label position="floating">Calificación (1-10)</ion-label>
+      <ion-input type="number" formControlName="calificacion"></ion-input>
     </ion-item>
+    <ion-text color="danger" *ngIf="campoInvalido('calificacion')">
+      Ingrese un número entre 1 y 10.
+    </ion-text>
 
-    <ion-item>
-      <ion-label>Calificación</ion-label>
-            <ion-item class="input-container">
-        <ion-label>Calificación</ion-label>
-        <div class="estrellas">
-          <ion-icon
-            *ngFor="let estrella of [1,2,3,4,5]"
-            [name]="estrella <= nuevaPelicula.calificacion ? 'star' : 'star-outline'"
-            (click)="nuevaPelicula.calificacion = estrella"
-            class="estrella-icono">
-          </ion-icon>
-        </div>
-</ion-item>
+    <ion-button expand="block" type="submit" [disabled]="formularioPelicula.invalid">
+      {{ modoEdicion ? 'Actualizar' : 'Agregar' }}
+    </ion-button>
+    <ion-button expand="block" fill="clear" color="medium" *ngIf="modoEdicion" (click)="cancelarEdicion()">
+      Cancelar edición
+    </ion-button>
 
-    </ion-item>
-
-    <ion-button expand="block" (click)="agregarAHistorial()">Agregar al Historial</ion-button>
-    <ion-text color="success" *ngIf="mensajeAgregado">✅ ¡Película agregada!</ion-text>
-  </ion-card-content>
+    <ion-text color="success" *ngIf="mensajeExito">
+      {{ mensajeExito }}
+    </ion-text>
+  </form>
 </ion-card>
 
-<ion-list>
-  <ion-item *ngFor="let pelicula of historialPeliculas">
+<ion-list class="lista-peliculas" *ngIf="listaPeliculas.length > 0">
+  <ion-item *ngFor="let pelicula of listaPeliculas; let i = index">
     <ion-label>
-      <h2>{{ pelicula.titulo }} ({{ pelicula.anio }})</h2>
+      <h2>{{ pelicula.titulo }}</h2>
       <p>{{ pelicula.descripcion }}</p>
-      <p>⭐ {{ pelicula.calificacion }}/5</p>
+      <p><strong>Calificación:</strong> {{ pelicula.calificacion }}</p>
     </ion-label>
+    <ion-button color="warning" (click)="editarPelicula(i)">Editar</ion-button>
+    <ion-button color="danger" (click)="eliminarPelicula(i)">Eliminar</ion-button>
   </ion-item>
 </ion-list>

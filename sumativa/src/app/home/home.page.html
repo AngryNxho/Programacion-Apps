@@ -8,11 +8,9 @@
   <h2 class="welcome-title">¡Bienvenido, {{ usuario }}!</h2>
 
   <ion-segment [(ngModel)]="segmentoSeleccionado">
-    <ion-segment-button value="peliculas">
-      <ion-label>Películas</ion-label>
-    </ion-segment-button>
+   
     <ion-segment-button value="experiencia">
-      <ion-label>Historial de Películas</ion-label>
+      <ion-label>Películas</ion-label>
     </ion-segment-button>
     <ion-segment-button value="certificaciones">
       <ion-label>Películas Destacadas</ion-label>
@@ -67,8 +65,12 @@
       <!-- ——— Historial ——— -->
       <ng-container *ngSwitchCase="'experiencia'">
         <!-- Aquí cargaremos el <app-historial-peliculas> más tarde -->
-        <p style="text-align:center;margin-top:2em;">⚙️ Historial de Películas (pendiente)</p>
       </ng-container>
+
+      <ng-container *ngSwitchCase="'experiencia'">
+    <app-historial-peliculas></app-historial-peliculas>
+  </ng-container>
+  
 
       <!-- ——— Destacadas ——— -->
       <ng-container *ngSwitchCase="'certificaciones'">
