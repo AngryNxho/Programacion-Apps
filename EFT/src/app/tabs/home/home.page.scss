@@ -65,7 +65,7 @@ ion-menu {
   text-align: center;
 }
 
-.book-grid {
+.movie-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -73,7 +73,7 @@ ion-menu {
   width: 100%;
 }
 
-.book-card {
+.movie-card {
   background: var(--input-background);
   border-radius: 0.625rem;
   width: 9.375rem;
@@ -183,14 +183,61 @@ swiper-slide {
   z-index: 998;
 }
 
+.movie-card {
+  background: var(--input-background);
+  border-radius: 0.625rem;
+  width: 180px;
+  overflow: hidden;
+  margin: 0.5rem auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-card img, .movie-cover, ion-thumbnail img {
+  width: 100%;
+  max-width: 180px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 0.625rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.recommended-movies .movie-card img {
+  width: 100%;
+  max-width: 180px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 0.625rem;
+  margin: 0 auto;
+  display: block;
+}
+
+.recommended-movies .movie-card {
+  width: 180px;
+}
+
+.recent-movies .movie-card img {
+  width: 100%;
+  max-width: 180px;
+  height: 270px;
+  object-fit: cover;
+}
+
+.recent-movies .movie-card {
+  width: 180px;
+}
+
 @media (min-width: 48rem) {
-  .book-card {
+  .movie-card {
     width: 11rem;
   }
 }
 
 @media (min-width: 64rem) {
-  .book-card {
+  .movie-card {
     width: 12.5rem;
   }
 }

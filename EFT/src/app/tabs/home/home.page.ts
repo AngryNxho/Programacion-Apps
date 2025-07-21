@@ -42,10 +42,7 @@ export class HomePage implements OnInit, AfterViewInit {
       dynamicMainBullets: 4
     },
     navigation: true,
-    loop: true,
-    loopedSlides: 4,
-    loopAdditionalSlides: 2,
-    loopFillGroupWithBlank: true,
+    loop: false,
     autoplay: {
       delay: 3000,
       disableOnInteraction: false
@@ -171,23 +168,29 @@ export class HomePage implements OnInit, AfterViewInit {
 
   async loadFilteredMovies() {
     this.isLoading = true;
-    
-    const promises = this.directores.map(director =>
-      this.infoPeliculaService.getPeliculas('', director, this.idioma)
-        .catch(error => {
-          console.error(`Error loading movies for ${director}:`, error);
-          return [];
-        })
-    );
-
     try {
+      const promises = this.directores.map(director =>
+        this.infoPeliculaService.getPeliculas('', director, this.idioma)
+          .catch(() => [])
+      );
       const results = await Promise.all(promises);
-      const allMovies = results.reduce((acc, val) => acc.concat(val), []);
-      const shuffledMovies = allMovies.sort(() => Math.random() - 0.5);
-      this.recentMovies = shuffledMovies.slice(0, 4);
-      this.recommendedMovies = shuffledMovies.slice(4, 8);
+      let allMovies = ([] as any[]).concat(...results).slice(0, 8);
+      const localCovers = [
+        { title: 'El hombre araña (2002)', director: 'Sam Raimi', coverImage: 'assets/covers/movie1.jpg' },
+        { title: 'El hombre araña 2 (2004)', director: 'Sam Raimi', coverImage: 'assets/covers/movie2.jpg' },
+        { title: 'Dark', director: 'Baran bo Odar, Jantje Friese', coverImage: 'assets/covers/movie3.jpg' },
+        { title: '1899', director: 'Baran bo Odar, Jantje Friese', coverImage: 'assets/covers/movie4.jpg' },
+        { title: 'Matrix', director: 'Lana Wachowski, Lilly Wachowski', coverImage: 'assets/covers/matrix.jpg' },
+        { title: 'Donnie Darko', director: 'Richard Kelly', coverImage: 'assets/covers/donnie.jpg' }
+      ];
+      let i = 0;
+      while (allMovies.length < 8 && i < localCovers.length) {
+        allMovies.push(localCovers[i]);
+        i++;
+      }
+      this.recentMovies = allMovies.slice(0, 4);
+      this.recommendedMovies = allMovies.slice(4, 8);
     } catch (error) {
-      console.error('Error loading filtered movies:', error);
       this.recentMovies = [];
       this.recommendedMovies = [];
     } finally {

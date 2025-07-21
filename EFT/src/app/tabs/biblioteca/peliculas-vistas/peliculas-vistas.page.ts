@@ -5,8 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './peliculas-vistas.page.html',
   styleUrls: ['./peliculas-vistas.page.scss'],
 })
-
-
 export class PeliculasVistasPage implements OnInit {
   seenMovies = [
     { title: 'El hombre araña (2002)',

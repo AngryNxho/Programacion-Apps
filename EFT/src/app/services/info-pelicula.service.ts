@@ -12,47 +12,36 @@ export class InfoPeliculaService {
     if (!titulo && !director) {
       return Promise.resolve([]); 
     }
-  
-    let query = '';
-    
+
+    const OMDB_API_KEY = '1f7227a2';
+    let url = `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}`;
     if (titulo) {
-      query = `q=${encodeURIComponent(titulo.trim())}`;
+      url += `&s=${encodeURIComponent(titulo.trim())}`;
     }
-    
-    if (director) {
-      query = query ? 
-        `${query}+indirector:${encodeURIComponent(director)}` : 
-        `q=indirector:${encodeURIComponent(director)}`;
-    }
-    
     if (idioma) {
-      query += `&langRestrict=${encodeURIComponent(idioma)}`;
+      url += `&language=${encodeURIComponent(idioma)}`;
     }
-  
+
     const options: HttpOptions = {
-      url: `https://www.googleapis.com/movies/v1/volumes?${query}`,
+      url,
       params: {}
     };
 
-    console.log('URL con la solicitud:', options.url);
-  
     return CapacitorHttp.get(options).then((response: HttpResponse) => {
-      console.log('Respuesta a la solicitud:', response);
-      const items = response.data.items || [];
+      const items = response.data.Search || [];
       const result = items.map((item: any) => ({
-        title: item.volumeInfo.title || 'Sin título',
-        director: item.volumeInfo.directores ? item.volumeInfo.directores.join(', ') : 'Director desconocido',
-        coverImage: this.processImageUrl(item.volumeInfo.imageLinks?.thumbnail),
+        title: item.Title || 'Sin título',
+        director: '',
+        coverImage: this.processImageUrl(item.Poster),
       }));
-      console.log('Resultado procesado:', result);
       return result;
     });
   }
 
   private processImageUrl(url: string | undefined): string {
-    if (!url) {
+    if (!url || url === 'N/A') {
       return 'assets/covers/default.jpg';
     }
-    return url.replace('http://', 'https://');
+    return url;
   }
 }

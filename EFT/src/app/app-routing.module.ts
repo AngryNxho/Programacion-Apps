@@ -20,19 +20,7 @@ const routes: Routes = [
   {
     path: 'sign-up',
     loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
-  },
-
-  // {
-  // path: 'vistas',
-  //   loadChildren: () => import('./biblioteca/peliculas-vistas/peliculas-vistas.module').then(m => m.PeliculasVistasPageModule)
-  // },
-  // {
-  //   path: 'por-ver',
-  //   loadChildren: () => import('./biblioteca/peliculas-por-ver/peliculas-por-ver.module').then(m => m.PeliculasPorVerPageModule)
-  // }
-
-
-  
+  }
 ];
 
 @NgModule({

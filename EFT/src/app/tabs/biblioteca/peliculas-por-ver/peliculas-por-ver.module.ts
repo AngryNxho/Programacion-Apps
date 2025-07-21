@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
+
 import { PeliculasPorVerPageRoutingModule } from './peliculas-por-ver-routing.module';
+
 import { PeliculasPorVerPage } from './peliculas-por-ver.page';
 
 @NgModule({
@@ -12,6 +15,6 @@ import { PeliculasPorVerPage } from './peliculas-por-ver.page';
     IonicModule,
     PeliculasPorVerPageRoutingModule
   ],
-  declarations: [ PeliculasPorVerPage ]
+  declarations: [PeliculasPorVerPage]
 })
 export class PeliculasPorVerPageModule {}

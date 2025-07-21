@@ -22,6 +22,14 @@ const routes: Routes = [
             path: '',
             loadChildren: () => import('./biblioteca/biblioteca.module').then(m => m.BibliotecaPageModule)
           },
+          {
+            path: 'peliculas-vistas',
+            loadChildren: () => import('./biblioteca/peliculas-vistas/peliculas-vistas.module').then(m => m.PeliculasVistasPageModule)
+          },
+          {
+            path: 'peliculas-por-ver',
+            loadChildren: () => import('./biblioteca/peliculas-por-ver/peliculas-por-ver.module').then(m => m.PeliculasPorVerPageModule)
+          }
         ]
       },
       {
@@ -39,17 +47,6 @@ const routes: Routes = [
       }
     ]
   },
-
-    {
-    path: 'peliculas-vistas',
-    loadChildren: () => import('./biblioteca/peliculas-vistas/peliculas-vistas.module').then(m => m.PeliculasVistasPageModule)
-  },
-  {
-    path: 'peliculas-por-ver',
-    loadChildren: () => import('./biblioteca/peliculas-por-ver/peliculas-por-ver.module').then(m => m.PeliculasPorVerPageModule)
-  }
-
-
 ];
 
 @NgModule({
