@@ -1,0 +1,47 @@
+ion-content {
+    --background: #1C1E33;
+  }
+  
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.25rem;
+  }
+  
+  .search-bar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    z-index: 1000;
+    
+    ion-menu-button {
+      --color: var(--text-color);
+    }
+  
+    ion-searchbar {
+      --background: var(--input-background);
+      --box-shadow: none;
+      --border-radius: 0.625rem;
+      --placeholder-color: rgba(255, 255, 255, 0.6);
+      --color: var(--text-color);
+      --icon-color: var(--text-color);
+      --clear-button-color: var(--text-color);
+    }
+  }
+  
+  ion-item {
+    --color: white;
+  }
+  
+  ion-item-divider {
+    --background: #3e3d4d;
+    --color: white;
+  }
+  
+  ion-label h2, ion-label p {
+    color: white;
+  }

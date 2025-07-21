@@ -1,0 +1,65 @@
+<ion-menu side="start" menuId="mainMenu" contentId="pageContent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/tabs/home">
+        <ion-icon name="home" slot="start"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-item>
+      <ion-item routerLink="/tabs/biblioteca">
+        <ion-icon name="library" slot="start"></ion-icon>
+        <ion-label>Mi Biblioteca</ion-label>
+      </ion-item>
+      <ion-item routerLink="/tabs/perfil">
+        <ion-icon name="person" slot="start"></ion-icon>
+        <ion-label>Perfil</ion-label>
+      </ion-item>
+      <ion-item routerLink="/tabs/recomendaciones">
+        <ion-icon name="star" slot="start"></ion-icon>
+        <ion-label>Recomendaciones</ion-label>
+      </ion-item>
+      <ion-item routerLink="/tabs/mis-listas">
+        <ion-icon name="list" slot="start"></ion-icon>
+        <ion-label>Mis Listas</ion-label>
+      </ion-item>
+      <ion-item (click)="getCurrentLocation()">
+        <ion-icon name="location" slot="start"></ion-icon>
+        <ion-label>Activar Geolocalización</ion-label>
+      </ion-item>
+      <ion-item (click)="logout()">
+        <ion-icon name="log-out" slot="start"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content id="pageContent" [fullscreen]="true">
+  <div class="home-container">
+    <div class="search-bar-container">
+      <ion-menu-button></ion-menu-button>
+      <ion-searchbar [(ngModel)]="titulo" 
+                    (ionInput)="onSearchInput()"
+                    placeholder="Buscar peliculas..."
+                    [animated]="true">
+      </ion-searchbar>
+    </div>
+
+    <section class="slides-section">
+      <h2 class="section-title">Recomendaciones de Peliculas</h2>
+      <div class="movie-cards">
+        <ion-card *ngFor="let movie of recommendedMovies" class="movie-card">
+          <img [src]="movie.coverImage" alt="Movie Cover" class="movie-cover" />
+          <ion-card-header>
+            <ion-card-title class="movie-title">{{ movie.title }}</ion-card-title>
+            <ion-card-subtitle class="movie-director">{{ movie.director }}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </section>
+  </div>
+</ion-content>

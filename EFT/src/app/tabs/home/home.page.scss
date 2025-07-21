@@ -1,0 +1,196 @@
+ion-content {
+  --background: var(--background-color);
+}
+
+ion-menu {
+  --ion-text-color: var(--text-color);
+  
+  ion-content {
+    --background: var(--background-color);
+  }
+
+  ion-item {
+    --color: var(--text-color);
+    --background: transparent;
+    
+    ion-icon {
+      color: var(--text-color);
+    }
+  }
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+}
+
+.search-bar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  z-index: 1000;
+  
+  ion-menu-button {
+    --color: var(--text-color);
+  }
+
+  ion-searchbar {
+    --background: var(--input-background);
+    --box-shadow: none;
+    --border-radius: 0.625rem;
+    --placeholder-color: rgba(255, 255, 255, 0.6);
+    --color: var(--text-color);
+    --icon-color: var(--text-color);
+    --clear-button-color: var(--text-color);
+  }
+
+  ion-button {
+    --background: var(--input-background);
+    --border-radius: 0.625rem;
+    --color: var(--text-color);
+    margin: 0;
+  }
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  width: 100%;
+  text-align: center;
+}
+
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.book-card {
+  background: var(--input-background);
+  border-radius: 0.625rem;
+  width: 9.375rem;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-0.3125rem);
+  }
+
+  img {
+    width: 100%;
+    height: 14rem;
+    object-fit: cover;
+  }
+
+  ion-card-header {
+    padding: 0.8rem;
+
+    ion-card-title {
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    ion-card-subtitle {
+      color: var(--primary-color);
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+    }
+  }
+}
+
+swiper-container {
+  width: 100%;
+  height: 18rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide {
+  display: flex;
+  justify-content: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.625rem;
+  }
+}
+
+.search-results-list {
+  position: absolute;
+  top: 100%;
+  left: 0.5rem;
+  right: 0.5rem;
+  background: var(--text-color);
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+  max-height: 70vh;
+  overflow-y: auto;
+  z-index: 999;
+
+  ion-item {
+    --background: transparent;
+    --color: var(--background-color);
+    
+    ion-thumbnail {
+      --border-radius: 0.3125rem;
+      width: 3rem;
+      height: 4.5rem;
+      margin: 0.5rem;
+    }
+
+    ion-label {
+      h2 {
+        color: white;
+        font-size: 1rem;
+      }
+      
+      p {
+        color: var(--input-background);
+        font-size: 0.9rem;
+      }
+    }
+
+    ion-button {
+      --background: var(--secondary-color);
+    }
+
+    &:hover {
+      --background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+@media (min-width: 48rem) {
+  .book-card {
+    width: 11rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .book-card {
+    width: 12.5rem;
+  }
+}

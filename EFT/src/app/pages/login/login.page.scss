@@ -1,0 +1,145 @@
+ion-content {
+  --background: var(--background-color);
+  height: 100vh;
+}
+
+.login-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+
+.login-header {
+  width: 100%;
+  padding: 2vh 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--text-color);
+  flex: 0 0 auto;
+}
+
+.app-name {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: bold;
+  margin-bottom: 1vh;
+  
+  .next { color: var(--secondary-color); }
+  .movie { color: var(--primary-color); }
+}
+
+.login-title {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  margin: 1vh 0;
+}
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.logo-image {
+  width: 25%;
+  max-width: 10rem;
+  height: auto;
+  object-fit: contain;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.login-form {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vh;
+  
+  form {
+    width: 90%;
+    max-width: 35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+  }
+}
+
+ion-item {
+  --background: var(--input-background);
+  --color: var(--text-color);
+  --highlight-color-focused: var(--primary-color);
+  border-radius: 0.5rem;
+  margin-bottom: 1vh;
+  
+  &.input-item {
+    ion-label {
+      color: var(--text-color);
+    }
+    ion-input {
+      --color: var(--text-color);
+    }
+  }
+}
+
+ion-button {
+  height: 2.8rem;
+  margin: 1vh 0;
+  
+  &.login-button {
+    --background: var(--primary-color) !important;
+    --color: var(--text-color) !important;
+  }
+  
+  &.register-button {
+    --background: var(--secondary-color) !important;
+    --color: var(--text-color) !important;
+  }
+}
+
+.forgot-password {
+  margin-top: 1vh;
+  font-size: 0.9rem;
+  text-align: center;
+  
+  a {
+    color: var(--text-color);
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .login-form form {
+    width: 70%;
+  }
+  
+  .logo-image {
+    width: 20%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-form form {
+    width: 50%;
+  }
+  
+  .logo-image {
+    width: 15%;
+  }
+}
